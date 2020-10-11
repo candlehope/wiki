@@ -20,6 +20,17 @@ def search(request):
     print(f"THIS IS LIST_ENTRIES {util.list_entries()}")
     if query in util.list_entries():
         return redirect(f"/wiki/{ query }")
-    
+    else: 
+        results = []
+        for x in util.list_entries():
+            if query in x:
+                results.append(x)
+        return render(request, "encyclopedia/results.html", {
+            "results": results
+        })
+
+def foo(request):
+    bar = request.GET.get("faux")
+
 
 
